@@ -3,7 +3,9 @@ var https = require('https');
 var crypto = require('crypto');
 var querystring = require("querystring");
 var _ = require('underscore');
-var request = require('request');
+
+
+
 /*
 https.get('https://www.bitstamp.net/api/v2/order_book/btceur/', function(res){
 	var size = 0;
@@ -71,6 +73,7 @@ var req = https.request(options, function(res) {
     	console.log(reg)
     	console.log(value)
     	console.log(buffer);
+      console.log(typeof JSON.parse(buffer))
 
     });
 });
