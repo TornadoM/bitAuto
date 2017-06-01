@@ -23,7 +23,7 @@ var Bitstamp = function(key, secret, client_id) {
   _.bindAll(this);
 }
 
-Bistamp.prototype._request = function(method, path, postData, callback, args){
+Bitstamp.prototype._request = function(method, path, postData, callback, args){
 	var options = {
 	  	hostname: 'www.bitstamp.net',
 	  	path: path,
@@ -287,5 +287,6 @@ Bitstamp.prototype.transfer_from_main = function(amount, currency, subAccount, c
     subAccount: subAccount
   }, true);
 }
+
 
 module.exports = Bitstamp;
