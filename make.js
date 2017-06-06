@@ -34,12 +34,14 @@ var make = function(){
 
 	var res_json = [];
 	var counter = 5;
+	var amount = 0.01;
 	var callback = function(json){
 		res_json = res_json.concat(json)
 		if(counter === 0){
 			var prices = compare_prices(res_json);
 			var high_buy = prices[0];
 			var low_sell = prices[1];
+			privateBitstamp.buyMarket('btceur', amount, console.log);
 			console.log(high_buy, low_sell);
 		}
 	}
