@@ -32,22 +32,32 @@ var make = function(){
 		return [high_buy, low_sell];
 	}
 
+
+	var get_price= function(json){
+		var val = parseFloat(json[json.length-1].price);
+		console.log(val);
+		return val;
+	}
+
 	var res_json = [];
 	var counter = 5;
-	var amount = 0.01;
+	var amount = 0.2;
 	var callback = function(json){
-		res_json = res_json.concat(json)
+		res_json = res_json.concat(json);
+		get_price(json);
 		if(counter === 0){
 			var prices = compare_prices(res_json);
+			get_price(json);
+			var price = get_price();
 			var high_buy = prices[0];
 			var low_sell = prices[1];
-			privateBitstamp.buyMarket('btceur', amount, console.log);
-			console.log(high_buy, low_sell);
+			console.log(high_buy, low_sell, price);
 		}
 	}
 	//make request every 5 mins
 	var makeRequest = function(){
-		publicBitstamp.transactions('btceur', {time: 'minute'}, callback);
+
+		publicBitstamp.transactions('btceur', {time: 'hour'}, callback);
 		counter--;
 		if(counter>0){
 			setTimeout(makeRequest, 1000*60)
